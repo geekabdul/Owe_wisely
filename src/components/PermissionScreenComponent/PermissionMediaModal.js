@@ -1,0 +1,80 @@
+import React from 'react';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {PermissionButton} from './PermissionButton';
+import {PermissionModalContainer} from './PermissionModalContainer';
+import {image} from '../../assets';
+import {color, dimension, font} from '../../utility';
+
+const PermissionMediaModal = ({visible, onPress, onPress1, onPress2}) => {
+  const {
+    containerStyle,
+    imageBoxStyle,
+    permissionDescriptionTextStyle,
+    appNameTextStyle,
+    buttonContainerTextStyle,
+  } = styles;
+  return (
+    <PermissionModalContainer visible={visible} onPress={onPress}>
+      <View style={containerStyle}>
+        <View style={imageBoxStyle}>
+          <Image source={image.mediaAndPhotosOrangeIcon} />
+        </View>
+        <Text style={permissionDescriptionTextStyle}>
+          Allow <Text style={appNameTextStyle}>Owe Wisely</Text> to access{' '}
+          {'\n'}
+          photos & media on your {'\n'} devices ?
+        </Text>
+        <View style={buttonContainerTextStyle}>
+          <PermissionButton
+            color={color.mandy}
+            label={'Don’t allow'}
+            onPress={onPress1}
+          />
+          <PermissionButton
+            color={color.azureRadiance}
+            label={'Allow'}
+            onPress={onPress2}
+          />
+        </View>
+      </View>
+    </PermissionModalContainer>
+  );
+};
+
+const styles = StyleSheet.create({
+  containerStyle: {
+    backgroundColor: color.white,
+    width: dimension.width * 0.7,
+    borderRadius: 5,
+    paddingVertical: 25,
+    paddingHorizontal: 15,
+    alignItems: 'center',
+  },
+  imageBoxStyle: {
+    height: dimension.width * 0.09,
+    width: dimension.width * 0.09,
+    backgroundColor: color.wildSand,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  permissionDescriptionTextStyle: {
+    fontSize: 14,
+    fontFamily: font.soraRegular,
+    color: color.black,
+    marginTop: 15,
+    textAlign: 'center',
+  },
+  appNameTextStyle: {
+    fontFamily: font.soraBold,
+  },
+  buttonContainerTextStyle: {
+    width: '90%',
+    marginTop: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+});
+
+export {PermissionMediaModal};

@@ -1,0 +1,21 @@
+rootProject.name = 'Mylo'
+include ':react-native-sim-data'
+project(':react-native-sim-data').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sim-data/android')
+include ':react-native-reanimated'
+project(':react-native-reanimated').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-reanimated/android')
+include ':react-native-sms-retriever'
+project(':react-native-sms-retriever').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sms-retriever/android')
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':react-native-telephony'
+project(':react-native-telephony').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-telephony/android/app') 
+include ':react-native-account-manager'
+project(':react-native-account-manager').projectDir 
+include ':app'
+includeBuild('../node_modules/react-native-gradle-plugin')
+
+if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true") {
+    include(":ReactAndroid")
+    project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')
+}
+include ':react-native-splash-screen'   
+project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
